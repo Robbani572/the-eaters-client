@@ -1,9 +1,12 @@
 import React from 'react';
+import { useLoaderData } from 'react-router-dom';
 
 const FoodDetails = () => {
+    const food = useLoaderData()
+    const {_id, title, img, chefName, chefExperience, likes, description, numRecipes } = food;
     return (
         <div>
-            <h1>Hello from Details page</h1>
+            <h3>{title}</h3>
         </div>
     );
 };

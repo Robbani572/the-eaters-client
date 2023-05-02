@@ -43,7 +43,7 @@ const Food = ({ food }) => {
                 </div>
                 <p className='tex-xl font-medium text-gray-500'>
                     {
-                        description.length < 250 ? <>{description}</> : <>{description.slice(0, 250)}...<Link to={`/news/${_id}`} className='text-xl font-bold'>Show More</Link></>
+                        description.length < 250 ? <>{description}</> : <>{description.slice(0, 250)}...<Link to={`/foods/${_id}`} className='text-xl font-bold'>Show More</Link></>
                     }
                 </p>
                 <div className="card-actions justify-end">

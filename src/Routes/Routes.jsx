@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         element: <DetailsLayout></DetailsLayout>,
         children: [
             {
-                path: 'foods/:id',
+                path: ':id',
                 element: <FoodDetails></FoodDetails>,
                 loader: ({params}) => fetch(`https://the-eaters-server-robbani572.vercel.app/foods/${params.id}`)
             }
