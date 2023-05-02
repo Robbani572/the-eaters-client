@@ -15,7 +15,7 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal">
                    <Link className='p-4 text-xl font-bold mx-2 hover:text-orange-600 duration-200' to="/">Home</Link>
                    <Link className='p-4 text-xl font-bold mx-2 hover:text-orange-600 duration-200' to="/about">About</Link>
-                   <Link className='p-4 text-xl font-bold mx-2 hover:text-orange-600 duration-200' to="/recipes">Recipes</Link>
+                   <Link className='p-4 text-xl font-bold mx-2 hover:text-orange-600 duration-200' to="/foods">Recipes</Link>
                 </ul>
             </div>
             <div>
