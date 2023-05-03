@@ -46,7 +46,8 @@ const Food = ({ food }) => {
                         description.length < 250 ? <>{description}</> : <>{description.slice(0, 250)}...<Link to={`/foods/${_id}`} className='text-xl font-bold'>Show More</Link></>
                     }
                 </p>
-                <div className="card-actions justify-end">
+                <div className="mt-4 card-actions justify-end">
+                    <Link to={`/foods/${_id}`} className='btn bg-stone-800'><button>Details</button></Link>
                 </div>
             </div>
         </div>

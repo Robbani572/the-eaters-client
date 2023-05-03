@@ -9,8 +9,8 @@ const Home = () => {
         <div>
             <Header></Header>
             <Foods></Foods>
-            <Faq></Faq>
             <Prices></Prices>
+            <Faq></Faq>
         </div>
     );
 };

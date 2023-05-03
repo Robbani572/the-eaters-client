@@ -1,10 +1,13 @@
 import React from 'react';
 import { FaThumbsUp } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 const FoodDetails = () => {
     const food = useLoaderData()
-    const { _id, title, img, chefName, chefExperience, likes, description, numRecipes, chefImg } = food;
+    const { _id, title, img, chefName, chefExperience, likes, description, numRecipes, chefImg, ingredients, rating } = food;
+    console.log(ingredients)
     return (
         <div className='card bg-base-100 shadow-xl p-8'>
             <h3 className='text-2xl font-bold first-letter'>DETAILS ABOUT: <span className='text-orange-500'>{title}</span></h3>
@@ -24,11 +27,25 @@ const FoodDetails = () => {
                     </div>
                 </div>
                 <div className='mt-8'>
-                    <h3 className='text-2xl font-semibold mb-6'>How to cook: {title}</h3>
+                    <h3 className='text-2xl font-bold mb-6'>HOW TO COOK: {title}</h3>
+                    <div className='mb-4'>
+                        <h5 className='text-xl font-semibold mb-2'>Ingredients</h5>
+                        <ul className='pl-2'>
+                            <li>1. {ingredients.ingredient1}</li>
+                            <li>2. {ingredients.ingredient2}</li>
+                            <li>3. {ingredients.ingredient3}</li>
+                            <li>4. {ingredients.ingredient4}</li>
+                            <li>5. {ingredients.ingredient5}</li>
+                        </ul>
+                    </div>
                     <p>{description}</p>
                 </div>
-                <div className='text-xl font-semibold mt-8'>
+                <div className='text-xl font-semibold mt-8 flex justify-between items-center'>
                     <h4>Numbers of recipes by {chefName}: {numRecipes}...<Link>See More</Link></h4>
+                    <div className='flex gap-2'>
+                        <Rating style={{ maxWidth: 100 }} value={rating} readOnly />
+                        <p>{rating}</p>
+                    </div>
                 </div>
             </div>
         </div>
