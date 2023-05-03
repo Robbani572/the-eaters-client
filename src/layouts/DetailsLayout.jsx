@@ -8,7 +8,7 @@ const DetailsLayout = () => {
     return (
         <div className='container mx-auto'>
             <Navbar></Navbar>
-            <div className='grid grid-cols-12 gap-8'>
+            <div className='grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 gap-8 mt-24'>
                 <div className='col-span-9'>
                     <Outlet></Outlet>
                 </div>

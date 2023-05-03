@@ -21,7 +21,7 @@ const Food = ({ food }) => {
 
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl">
-            <figure><img src={img} alt="Shoes" /></figure>
+            <figure><img src={img} alt={title} /></figure>
             <div className="card-body">
                 <h2 className="text-center text-2xl font-bold">{title}</h2>
                 <div className='flex items-center justify-between'>

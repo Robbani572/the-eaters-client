@@ -32,7 +32,7 @@ const Foods = () => {
     return (
         <div className='mt-24'>
             <h1 className="text-5xl font-bold text-center">Bengali <span className='text-orange-400'>Recipes_</span></h1>
-            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-3 mt-12 gap-8 justify-items-center'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 mt-12 gap-8 justify-items-center'>
                 {
                     foods.map(food => <Food
                         key={food._id}
