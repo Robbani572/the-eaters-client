@@ -7,7 +7,7 @@ const Register = () => {
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
 
-    const { createUser } = useContext(AuthContext)
+    const { createUser, updateUser } = useContext(AuthContext)
 
     const handleRegister = event => {
         event.preventDefault();
