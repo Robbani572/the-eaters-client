@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/logo1.png'
+import { AuthContext } from '../../../providers/AuthProvider/AuthProvider';
 
 const Navbar = () => {
 
-    const [user, setUser] = useState(null)
+    const {user, logOut} = useContext(AuthContext)
+
+    const handleSignOut = () => {
+        logOut()
+        .then(result => {
+
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
     
     return (
         <div className="navbar bg-base-100 flex md:flex-row lg:flex-row flex-col justify-between items-center">
@@ -20,8 +31,8 @@ const Navbar = () => {
             </div>
             <div>
                 {
-                    user ? <Link><button className='btn bg-stone-800'>Log out</button></Link> :
-                    <Link><button className='btn bg-stone-800'>Login</button></Link>
+                    user ? <Link onClick={handleSignOut}><button className='btn bg-stone-800'>Log out</button></Link> :
+                    <Link to='/login'><button className='btn bg-stone-800'>Login</button></Link>
                 }
             </div>
         </div>

@@ -17,7 +17,7 @@ const Food = ({ food }) => {
         toast('Recipe Removed')
     }
 
-    const {_id, title, img, chefName, chefExperience, likes, description, numRecipes } = food;
+    const {_id, title, img, chefName, chefExperience, likes, description, chefImg } = food;
 
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -26,7 +26,7 @@ const Food = ({ food }) => {
                 <h2 className="text-center text-2xl font-bold">{title}</h2>
                 <div className='flex items-center justify-between'>
                     <div className='flex items-center'>
-                        <img className='h-12 w-12 rounded-full' src={img} alt="" />
+                        <img className='h-12 w-12 rounded-full' src={chefImg} alt="" />
                         <div className='ml-4'>
                             <h4 className='text-xl font-semibold'>{chefName}</h4>
                             <p>Experience: {chefExperience}</p>

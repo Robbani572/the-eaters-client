@@ -4,6 +4,10 @@ import Header from "../pages/Home/Header/Header";
 import Main from "../layouts/Main";
 import DetailsLayout from "../layouts/DetailsLayout";
 import FoodDetails from "../pages/Shared/FoodDetails/FoodDetails";
+import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/Authentication/Login/Login";
+import Register from "../pages/Authentication/Register/Register";
+import PrivetRoutes from "./PrivetRoutes";
 
 const router = createBrowserRouter([
     {
@@ -22,9 +26,24 @@ const router = createBrowserRouter([
         children: [
             {
                 path: ':id',
-                element: <FoodDetails></FoodDetails>,
+                element: <PrivetRoutes><FoodDetails></FoodDetails></PrivetRoutes>,
                 loader: ({params}) => fetch(`https://the-eaters-server-robbani572.vercel.app/foods/${params.id}`)
             }
+        ]
+    },
+    {
+        path: '/',
+        element: <AuthLayout></AuthLayout>,
+        children: [
+            {
+                path: 'login',
+                element: <Login></Login>
+            },
+            {
+                path: 'register',
+                element: <Register></Register>
+            }
+
         ]
     }
 ])

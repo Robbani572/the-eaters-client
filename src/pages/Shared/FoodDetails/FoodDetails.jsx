@@ -4,7 +4,7 @@ import { Link, useLoaderData } from 'react-router-dom';
 
 const FoodDetails = () => {
     const food = useLoaderData()
-    const { _id, title, img, chefName, chefExperience, likes, description, numRecipes } = food;
+    const { _id, title, img, chefName, chefExperience, likes, description, numRecipes, chefImg } = food;
     return (
         <div className='card bg-base-100 shadow-xl p-8'>
             <h3 className='text-2xl font-bold first-letter'>DETAILS ABOUT: <span className='text-orange-500'>{title}</span></h3>
@@ -12,7 +12,7 @@ const FoodDetails = () => {
                 <img className='w-full h-96 rounded-md' src={img} alt="" />
                 <div className='flex justify-between items-center mt-8'>
                     <div className='flex items-center'>
-                        <img className='h-12 w-12 rounded-full' src={img} alt="" />
+                        <img className='h-16 w-16 rounded-full' src={chefImg} alt="" />
                         <div className='ml-4'>
                             <h4 className='text-xl font-semibold'>{chefName}</h4>
                             <p>Experience: {chefExperience}</p>
