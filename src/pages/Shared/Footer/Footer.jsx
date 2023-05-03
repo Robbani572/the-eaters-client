@@ -15,7 +15,7 @@ const Footer = () => {
             </div>
 
             <div className="pt-5 pl-5">
-            <h4 className="text-3xl font-semibold text-center">Become our Family</h4>
+            <h4 className="text-3xl font-semibold">Become our Family</h4>
                 <div className="pl-3 pt-5">
                 <input type="text" placeholder="Email" className="w-full rounded-md h-10 p-2 text-black " />
                 <input type="number" placeholder="Phone" className="mt-3 w-full rounded-md h-10 p-2 text-black " />
@@ -24,7 +24,7 @@ const Footer = () => {
             </div>
 
             <div className="pt-5 pl-5">
-            <h4 className="text-3xl font-semibold text-center">Few thngs you have to know</h4>
+            <h4 className="text-3xl font-semibold">Few thngs you have to know</h4>
             <p className="pl-3 pt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Est perferendis iure, iusto ab veritatis vero excepturi ipsum officiis blanditiis, at tenetur odio provident velit quidem rem recusandae debitis molestiae modi!</p>
             </div>
         </div>
