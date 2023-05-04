@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { FaHeart, FaThumbsUp } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import { ToastContainer, toast } from 'react-toastify';
+import LazyLoad from 'react-lazy-load';
 
 const FoodDetails = () => {
     const food = useLoaderData()
@@ -25,7 +26,9 @@ const FoodDetails = () => {
         <div className='card bg-base-100 shadow-xl p-8'>
             <h3 className='text-2xl font-bold first-letter'>DETAILS ABOUT: <span className='text-orange-500'>{title}</span></h3>
             <div className='mt-8'>
-                <img className='w-full h-96 rounded-md' src={img} alt="" />
+                <LazyLoad>
+                    <img className='w-full h-96 rounded-md' src={img} alt="" />
+                </LazyLoad>
                 <div className='flex justify-between items-center mt-8'>
                     <div className='flex items-center'>
                         <img className='h-16 w-16 rounded-full' src={chefImg} alt="" />
@@ -35,15 +38,15 @@ const FoodDetails = () => {
                         </div>
                     </div>
                     <div className='flex items-center justify-between'>
-                    <div className='cursor-pointer'>
-                        {
-                            liked ? <FaHeart onClick={handleToastifyRemoved} className='text-red-600 h-6 w-6' />:
-                            <FaHeart onClick={handleToastifyAdded}  className='text-gray-600 h-6 w-6' />
-                        }
-                        <ToastContainer></ToastContainer>
-                    </div>
+                        <div className='cursor-pointer'>
+                            {
+                                liked ? <FaHeart onClick={handleToastifyRemoved} className='text-red-600 h-6 w-6' /> :
+                                    <FaHeart onClick={handleToastifyAdded} className='text-gray-600 h-6 w-6' />
+                            }
+                            <ToastContainer></ToastContainer>
+                        </div>
 
-                </div>
+                    </div>
                 </div>
                 <div className='mt-8'>
                     <h3 className='text-2xl font-bold mb-6'>HOW TO COOK: {title}</h3>

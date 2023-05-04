@@ -2,22 +2,25 @@ import React, { useState } from 'react';
 import { FaHeart, FaThumbsUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import LazyLoad from 'react-lazy-load';
 
 const Food = ({ food }) => {
 
-    
+
 
     const { _id, title, img, chefName, chefExperience, likes, description, chefImg, chefBio } = food;
 
     return (
         <div className="card card-compact w-96 bg-base-100 shadow-xl">
-            <figure><img src={chefImg} alt={title} /></figure>
+            <LazyLoad height={762}>
+                <figure><img src={chefImg} alt={chefName} /></figure>
+            </LazyLoad>
             <div className="card-body">
                 <div className='text-center'>
                     <h2 className="text-2xl font-bold">{chefName}</h2>
-                    <p className='text-xl font-semibold text-gray-600'>{chefExperience}</p>
+                    <p className='text-xl font-semibold text-gray-600'>{chefExperience} of experience</p>
                 </div>
-                
+
                 <p className='tex-xl font-medium text-gray-500'>
                     {
                         chefBio

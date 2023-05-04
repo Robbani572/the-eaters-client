@@ -1,13 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider/AuthProvider';
+import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 const Register = () => {
 
     const [error, setError] = useState('')
     const [success, setSuccess] = useState('')
 
-    const { createUser, updateUser } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+
+    const { createUser, updateUser, signInUserWithGoogle } = useContext(AuthContext)
 
     const handleRegister = event => {
         event.preventDefault();
@@ -24,8 +28,6 @@ const Register = () => {
 
         const re = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[a-zA-Z!#$%&? "])/;
 
-        console.log(name, email, password, confirm)
-
         if (password !== confirm) {
             setError("Password doesn't match")
             console.log(error)
@@ -35,7 +37,7 @@ const Register = () => {
             setError('Password must contain 8 characters')
             return
         }
-        else if(re.test(password) === false){
+        else if (re.test(password) === false) {
             setError('make a storng password')
             return
         }
@@ -50,10 +52,10 @@ const Register = () => {
 
                     console.log(createdUser)
                     updateUser(displayName, photoURL)
-                    .then()
-                    .catch(error => {
-                        console.log(error)
-                    })
+                        .then()
+                        .catch(error => {
+                            console.log(error)
+                        })
                     console.log(createdUser)
                 })
                 .catch(error => {
@@ -63,6 +65,18 @@ const Register = () => {
 
         }
 
+    }
+
+    const handleGoogleSinIn = () => {
+        signInUserWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -128,6 +142,17 @@ const Register = () => {
                         </div>
                     </div>
                 </form>
+                <div className='flex justify-between items-center mt-8 '>
+                    <hr className='w-2/5' />Or<hr className='w-2/5' />
+                </div>
+                <div className='mt-4 mb-4 p-8'>
+                    <button onClick={handleGoogleSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success">
+                        <FaGoogle className='h-6 w-6'></FaGoogle> <span className='text-gray-700 pl-4'>Button</span>
+                    </button>
+                    <button className="btn w-full btn-outline outline-gray-800 hover:btn-success mt-4">
+                        <FaGithub className='h-6 w-6'></FaGithub> <span className='text-gray-700 pl-4'>Button</span>
+                    </button>
+                </div>
             </div>
         </div>
     );

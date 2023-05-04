@@ -1,5 +1,6 @@
 import React from 'react';
 import hero from '../../../assets/hero-icon1.png'
+import LazyLoad from 'react-lazy-load';
 
 const Header = () => {
     return (
@@ -12,7 +13,9 @@ const Header = () => {
                 </div>
 
                 <div className='flex-grow-1'>
-                    <img src={hero} className="w-full rounded-lg shadow-2xl" />
+                    <LazyLoad height={762}>
+                        <img src={hero} className="w-full rounded-lg shadow-2xl" />
+                    </LazyLoad>
                 </div>
 
             </div>

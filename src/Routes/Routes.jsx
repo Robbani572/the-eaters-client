@@ -9,6 +9,7 @@ import Login from "../pages/Authentication/Login/Login";
 import Register from "../pages/Authentication/Register/Register";
 import PrivetRoutes from "./PrivetRoutes";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Blog from "../pages/Blog/Blog";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>
             },
+            {
+                path: 'blog',
+                element: <Blog></Blog>
+            }
         ]
     },
     {
