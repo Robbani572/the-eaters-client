@@ -1,10 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider/AuthProvider';
+import { FaGithub, FaGoogle } from 'react-icons/fa';
 
 const Login = () => {
 
-    const {user, singInUser} = useContext(AuthContext)
+    const { user, singInUser, signInUserWithGoogle, singInUserWithGithub } = useContext(AuthContext)
 
     // const mail = user.email;
     // const pass = user.pass;
@@ -29,18 +30,41 @@ const Login = () => {
         // }
 
         singInUser(email, password)
-        .then(result => {
-            event.target.reset()
-            const loggedUser = result.user;
-            setError('')
-            console.log(loggedUser)
-            navigate(from)
-        })
-        .catch(error => {
-            console.log(error)
-            setError(error.message)
-        })
+            .then(result => {
+                event.target.reset()
+                const loggedUser = result.user;
+                setError('')
+                console.log(loggedUser)
+                navigate(from)
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            })
 
+    }
+
+    const handleGoogleSinIn = () => {
+        signInUserWithGoogle()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                navigate(from)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+    const handleGithubSinIn = () => {
+        singInUserWithGithub()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                navigate(from)
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     return (
@@ -68,7 +92,7 @@ const Login = () => {
                         </div>
                         <div className='form-control'>
                             <label className='label items-center'>
-                                <input type="checkbox" className='h-5 w-5 rounded'/>
+                                <input type="checkbox" className='h-5 w-5 rounded' />
                                 <p className='text-xl text-gray-700 ml-4'><span>Remember me</span></p>
                             </label>
                         </div>
@@ -83,6 +107,17 @@ const Login = () => {
                         </div>
                     </div>
                 </form>
+                <div className='flex justify-between items-center mt-8 '>
+                    <hr className='w-2/5' />Or<hr className='w-2/5' />
+                </div>
+                <div className='mt-4 mb-4 p-8'>
+                    <button onClick={handleGoogleSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success">
+                        <FaGoogle className='h-6 w-6'></FaGoogle> <span className='text-gray-700 pl-4'>Login with Google</span>
+                    </button>
+                    <button onClick={handleGithubSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success mt-4">
+                        <FaGithub className='h-6 w-6'></FaGithub> <span className='text-gray-700 pl-4'>Login with Github</span>
+                    </button>
+                </div>
             </div>
         </div>
     );

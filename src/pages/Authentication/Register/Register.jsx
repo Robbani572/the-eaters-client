@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProvider/AuthProvider';
-import { FaGoogle, FaGithub } from 'react-icons/fa';
 
 const Register = () => {
 
@@ -11,7 +10,9 @@ const Register = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const { createUser, updateUser, signInUserWithGoogle, singInUserWithGithub } = useContext(AuthContext)
+    const from = location.state?.from?.pathname || '/';
+
+    const { createUser, updateUser } = useContext(AuthContext)
 
     const handleRegister = event => {
         event.preventDefault();
@@ -49,6 +50,7 @@ const Register = () => {
                     const createdUser = result.user;
                     setSuccess('Account created successfully')
                     setError('')
+                    navigate(from)
 
                     console.log(createdUser)
                     updateUser(displayName, photoURL)
@@ -67,28 +69,6 @@ const Register = () => {
 
     }
 
-    const handleGoogleSinIn = () => {
-        signInUserWithGoogle()
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser)
-                navigate('/')
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
-    const handleGithubSinIn = () => {
-        singInUserWithGithub()
-            .then(result => {
-                const loggedUser = result.user;
-                console.log(loggedUser)
-                navigate('/')
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
 
     return (
         <div className="hero min-h-screen bg-base-200 rounded-md">
@@ -153,17 +133,6 @@ const Register = () => {
                         </div>
                     </div>
                 </form>
-                <div className='flex justify-between items-center mt-8 '>
-                    <hr className='w-2/5' />Or<hr className='w-2/5' />
-                </div>
-                <div className='mt-4 mb-4 p-8'>
-                    <button onClick={handleGoogleSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success">
-                        <FaGoogle className='h-6 w-6'></FaGoogle> <span className='text-gray-700 pl-4'>Login with Google</span>
-                    </button>
-                    <button onClick={handleGithubSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success mt-4">
-                        <FaGithub className='h-6 w-6'></FaGithub> <span className='text-gray-700 pl-4'>Login with Github</span>
-                    </button>
-                </div>
             </div>
         </div>
     );

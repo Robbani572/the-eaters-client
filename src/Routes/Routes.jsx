@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     },
     {
         path: 'foods',
-        element: <DetailsLayout></DetailsLayout>,
+        element: <PrivetRoutes><DetailsLayout></DetailsLayout></PrivetRoutes>,
         children: [
             {
                 path: ':id',

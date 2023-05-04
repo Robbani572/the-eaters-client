@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import logo from '../../../assets/logo1.png'
 import { AuthContext } from '../../../providers/AuthProvider/AuthProvider';
 
@@ -7,9 +7,15 @@ const Navbar = () => {
 
     const { user, logOut } = useContext(AuthContext)
 
+    
+    const navigate = useNavigate()
+    const location = useLocation()
+
     const handleSignOut = () => {
         logOut()
-            .then()
+            .then(
+                navigate('/')
+            )
             .catch(error => {
                 console.log(error)
             })
