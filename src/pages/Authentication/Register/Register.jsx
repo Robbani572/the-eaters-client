@@ -11,7 +11,7 @@ const Register = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    const { createUser, updateUser, signInUserWithGoogle } = useContext(AuthContext)
+    const { createUser, updateUser, signInUserWithGoogle, singInUserWithGithub } = useContext(AuthContext)
 
     const handleRegister = event => {
         event.preventDefault();
@@ -78,10 +78,21 @@ const Register = () => {
                 console.log(error)
             })
     }
+    const handleGithubSinIn = () => {
+        singInUserWithGithub()
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                navigate('/')
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
 
     return (
         <div className="hero min-h-screen bg-base-200 rounded-md">
-            <div className="hero-content w-2/5 flex-col">
+            <div className="hero-content w-full md:w-2/5 lg:w-2/5 flex-col">
                 <div className="text-center">
                     <h1 className="text-5xl font-bold">Register now!</h1>
                 </div>
@@ -147,10 +158,10 @@ const Register = () => {
                 </div>
                 <div className='mt-4 mb-4 p-8'>
                     <button onClick={handleGoogleSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success">
-                        <FaGoogle className='h-6 w-6'></FaGoogle> <span className='text-gray-700 pl-4'>Button</span>
+                        <FaGoogle className='h-6 w-6'></FaGoogle> <span className='text-gray-700 pl-4'>Login with Google</span>
                     </button>
-                    <button className="btn w-full btn-outline outline-gray-800 hover:btn-success mt-4">
-                        <FaGithub className='h-6 w-6'></FaGithub> <span className='text-gray-700 pl-4'>Button</span>
+                    <button onClick={handleGithubSinIn} className="btn w-full btn-outline outline-gray-800 hover:btn-success mt-4">
+                        <FaGithub className='h-6 w-6'></FaGithub> <span className='text-gray-700 pl-4'>Login with Github</span>
                     </button>
                 </div>
             </div>
