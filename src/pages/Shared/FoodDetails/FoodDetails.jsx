@@ -1,11 +1,24 @@
-import React from 'react';
-import { FaThumbsUp } from 'react-icons/fa';
+import React, { useState } from 'react';
+import { FaHeart, FaThumbsUp } from 'react-icons/fa';
 import { Link, useLoaderData } from 'react-router-dom';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { ToastContainer, toast } from 'react-toastify';
 
 const FoodDetails = () => {
     const food = useLoaderData()
+
+    const [liked, setLiked] = useState(false)
+
+    const handleToastifyAdded = () => {
+        setLiked(!liked)
+        toast('Recipe added')
+    }
+    const handleToastifyRemoved = () => {
+        setLiked(!liked)
+        toast('Recipe Removed')
+    }
+
     const { _id, title, img, chefName, chefExperience, likes, description, numRecipes, chefImg, ingredients, rating } = food;
     console.log(ingredients)
     return (
@@ -21,10 +34,16 @@ const FoodDetails = () => {
                             <p>Experience: {chefExperience}</p>
                         </div>
                     </div>
-                    <div className='flex justify-center items-center'>
-                        <FaThumbsUp className='h-6 w-6'></FaThumbsUp>
-                        <p className='text-gray-800 text-2xl font-bold ml-4'><small>{likes}</small></p>
+                    <div className='flex items-center justify-between'>
+                    <div className='cursor-pointer'>
+                        {
+                            liked ? <FaHeart onClick={handleToastifyRemoved} className='text-red-600 h-6 w-6' />:
+                            <FaHeart onClick={handleToastifyAdded}  className='text-gray-600 h-6 w-6' />
+                        }
+                        <ToastContainer></ToastContainer>
                     </div>
+
+                </div>
                 </div>
                 <div className='mt-8'>
                     <h3 className='text-2xl font-bold mb-6'>HOW TO COOK: {title}</h3>
